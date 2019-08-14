@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:amap_location/amap_location.dart';
+import 'package:ios_todo/gaodeMap/calculationDistance/CalculationDistanceByCoordinates.dart';
+import 'package:ios_todo/gaodeMap/model/Coordinates.dart';
+import 'package:ios_todo/gaodeMap/positioning/GetLocation.dart';
+
+import 'package:ios_todo/gaodeMap/positioning/ListenLocation.dart';
 
 void main(){
   AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
@@ -58,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
-      paly();
+      paly01();
     });
   }
 
@@ -114,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void paly() async{
+  // 测试的初级版本
+  void paly00() async{
     String string = "";
     AMapLocation loc;
     await AMapLocationClient.startup(new AMapLocationOption(desiredAccuracy:CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
@@ -135,5 +141,27 @@ class _MyHomePageState extends State<MyHomePage> {
     print(string);
   }
 
+  // 直接定位测试模块
+  void paly01() async {
+    GetLocation getLocation = new GetLocation();
+    await getLocation.function();
+    print(getLocation.getPositioningResults());
+    print(getLocation.getCoordinates().toString());
+    Coordinates start = new Coordinates(116.368904, 39.923423);
+    Coordinates end = new Coordinates(116.387271, 39.922501);
+    print("------俩个定位坐标的距离--start---");
+    print("距离是" + new CalculationDistanceByCoordinates(start, end).calculationDistance());
+    print("------俩个定位坐标的距离--end---");
+  }
+
+  // 监听定位测试模块
+  void paly02() async {
+    ListenLocation listenLocation = new ListenLocation();
+    await listenLocation.funcation();
+    print(listenLocation.getCoordinates());
+    print(listenLocation.getPositioningResults());
+    listenLocation.stopListenLocation();
+
+  }
 
 }
