@@ -3,6 +3,8 @@ import 'package:amap_location/amap_location.dart';
 import 'package:ios_todo/gaodeMap/calculationDistance/CalculationDistance.dart';
 import 'package:ios_todo/gaodeMap/model/Coordinates.dart';
 
+import 'CalculationDistanceByCoordinates.dart';
+
 
 // 实现计算距离的接口
 // Implement the interface to calculate the distance
@@ -32,7 +34,8 @@ class CalculationDistanceByAMapLocation implements CalculationDistance {
   String calculationDistance() {
     Coordinates coordinatesI = this.getCoordinatesByAMapLocation(this.aMapLocationI);
     Coordinates coordinatesII = this.getCoordinatesByAMapLocation(this.aMapLocationII);
-
+    CalculationDistance calculationDistance = new CalculationDistanceByCoordinates(coordinatesI, coordinatesII);
+    return calculationDistance.calculationDistance();
   }
 
   // 通过定位信息获取坐标

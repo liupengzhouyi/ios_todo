@@ -34,7 +34,6 @@ class GetLocation {
     await AMapLocationClient.startup(new AMapLocationOption(
         desiredAccuracy: CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
     loc = await AMapLocationClient.getLocation(true);
-
     this.aMapLocation = loc;
     if (loc == null) {
       this.positioningResults = "正在定位";

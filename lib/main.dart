@@ -5,6 +5,7 @@ import 'package:ios_todo/gaodeMap/model/Coordinates.dart';
 import 'package:ios_todo/gaodeMap/positioning/GetLocation.dart';
 
 import 'package:ios_todo/gaodeMap/positioning/ListenLocation.dart';
+import 'package:ios_todo/gaodeMap/positioning/paly.dart';
 
 void main(){
   AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: '刘鹏的专用App'),
+      home: LocationListen(),
+      //MyHomePage(title: '刘鹏的专用App'),
     );
   }
 }
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
-      paly01();
+      paly02();
     });
   }
 
@@ -156,12 +158,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // 监听定位测试模块
   void paly02() async {
-    ListenLocation listenLocation = new ListenLocation();
+    this.listenLocation = new ListenLocation();
     await listenLocation.funcation();
-    print(listenLocation.getCoordinates());
-    print(listenLocation.getPositioningResults());
+    setState(() {
+      this.aMapLocation = listenLocation.aMapLocation;
+    });
+    /*print(listenLocation.getCoordinates());
+    print(listenLocation.getPositioningResults());*/
+
+    print('----------');
+    print(this.aMapLocation.latitude);
+    print('----------');
+  }
+
+  void paly02Stop() {
     listenLocation.stopListenLocation();
+  }
+
+  void paly03() async {
+    LocationListen locationListen = new LocationListen();
 
   }
 
+  ListenLocation listenLocation;
+  AMapLocation aMapLocation;
 }

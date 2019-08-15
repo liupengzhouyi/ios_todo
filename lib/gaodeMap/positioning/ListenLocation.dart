@@ -1,6 +1,6 @@
 
+import 'package:flutter/material.dart';
 import 'package:amap_location/amap_location.dart';
-
 import 'package:ios_todo/gaodeMap/model/Coordinates.dart';
 
 
@@ -30,15 +30,20 @@ class ListenLocation {
 
   // 主要功能函数：监听获取定位信息
   // Main function: listen for location information
-  funcation() async {
+  void funcation() async {
+
+    AMapLocationClient.startLocation();
+
+    AMapLocationClient.startLocation();
+
     await AMapLocationClient.onLocationUpate.listen((AMapLocation loc) {
       this.aMapLocation = loc;
     });
     // 开始监听定位
     AMapLocationClient.startLocation();
     // 获取坐标类
-    Coordinates coordinates = new Coordinates(
-        this.aMapLocation.longitude, this.aMapLocation.latitude);
+    // Coordinates coordinates = new Coordinates(this.aMapLocation.longitude, this.aMapLocation.latitude);
+    // print(coordinates.toString());
     // 坐标持久化
     this.coordinates = coordinates;
   }
