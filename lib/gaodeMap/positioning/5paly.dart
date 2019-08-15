@@ -1,3 +1,9 @@
+
+
+
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:amap_location/amap_location.dart';
 import 'package:ios_todo/gaodeMap/calculationDistance/CalculationDistanceByCoordinates.dart';
@@ -64,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
-      paly02();
+      countdown();
     });
   }
 
@@ -118,6 +124,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void countdown(){
+    Timer countdownTimer =  new Timer.periodic(new Duration(seconds: 1), (timer) {
+      print('----');
+      paly01();
+    });
   }
 
   // 测试的初级版本
