@@ -11,7 +11,7 @@ import 'package:ios_todo/gaodeMap/model/Coordinates.dart';
 import 'package:ios_todo/gaodeMap/positioning/GetLocation.dart';
 
 import 'package:ios_todo/gaodeMap/positioning/ListenLocation.dart';
-import 'package:ios_todo/gaodeMap/positioning/paly.dart';
+import 'package:ios_todo/gaodeMap/test/paly.dart';
 
 void main(){
   AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");

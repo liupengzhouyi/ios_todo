@@ -84,6 +84,7 @@ class _CountdownState extends State<CountdownState> {
 
     setState(() {
       if (this.widget.number > 0) {
+        // 判断页面是否存在
         if (mounted) {
           _timer =  new Timer.periodic(oneSec, (timer) {
             setState(() {

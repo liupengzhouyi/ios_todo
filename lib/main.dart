@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:amap_location/amap_location.dart';
 import 'package:ios_todo/gaodeMap/calculationDistance/CalculationDistanceByCoordinates.dart';
 import 'package:ios_todo/gaodeMap/model/Coordinates.dart';
+import 'package:ios_todo/gaodeMap/positioning/FalseListeningLocation.dart';
 import 'package:ios_todo/gaodeMap/positioning/GetLocation.dart';
 
 import 'package:ios_todo/gaodeMap/positioning/ListenLocation.dart';
-import 'package:ios_todo/gaodeMap/positioning/paly.dart';
+import 'package:ios_todo/gaodeMap/test/paly.dart';
 
 void main(){
   AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
-      paly01();
+      paly04();
     });
   }
 
@@ -148,6 +149,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void paly03() async {
     LocationListen locationListen = new LocationListen();
 
+  }
+
+  void paly04() async {
+    FalseListeningLocation falseListeningLocation = new FalseListeningLocation();
+    await falseListeningLocation.function();
+    setState(() {
+      print(falseListeningLocation.getCoordinates().toString());
+    });
   }
 
   ListenLocation listenLocation;

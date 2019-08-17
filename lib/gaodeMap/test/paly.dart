@@ -1,7 +1,7 @@
 import 'package:amap_location/amap_location.dart';
 import 'package:flutter/material.dart';
+import 'package:ios_todo/gaodeMap/positioning/GetLocation.dart';
 
-import 'GetLocation.dart';
 // import 'package:simple_permissions/simple_permissions.dart';
 // import 'package:easy_alert/easy_alert.dart';
 
