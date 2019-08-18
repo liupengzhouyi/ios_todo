@@ -6,8 +6,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 class FirstPage extends StatefulWidget {
 
-  static final String sName = "/";
-
   @override
   State createState() => FirstPageState();
 }
@@ -15,9 +13,9 @@ class FirstPage extends StatefulWidget {
 class FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
-
     return StoreBuilder<LiupengReduxState>(
         builder: (BuildContext context, Store<LiupengReduxState> store){
+
           return Scaffold(
             appBar: AppBar(
               title: Text("ReduxDemo3"),
@@ -39,6 +37,7 @@ class FirstPageState extends State<FirstPage> {
                 )
             ),
           );
+
         }
     );
   }

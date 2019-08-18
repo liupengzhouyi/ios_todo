@@ -7,7 +7,6 @@ import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 void main(){
-  // AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
   runApp(MyApp());
 }
 
@@ -20,15 +19,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new ReduxDemo3(store),
+      home: new ReduxDemo(store),
     );
   }
 }
 
-class ReduxDemo3 extends StatelessWidget {
+class ReduxDemo extends StatelessWidget {
 
   final Store<LiupengReduxState> store;
-  ReduxDemo3(this.store);
+
+  // 构造函数
+  ReduxDemo(this.store);
 
   @override
   Widget build(BuildContext context) {

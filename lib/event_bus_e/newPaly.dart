@@ -4,7 +4,6 @@ import 'bus.dart';
 import 'newPaly1.dart';
 
 void main(){
-  // AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
   runApp(MyApp());
 }
 

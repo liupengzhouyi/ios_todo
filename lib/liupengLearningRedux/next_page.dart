@@ -14,10 +14,10 @@ class NextPage extends StatefulWidget {
 class NextPageState extends State<NextPage> {
   @override
   Widget build(BuildContext context) {
-
     /// StoreBuilder
     return StoreBuilder<LiupengReduxState>(
         builder: (BuildContext context, Store<LiupengReduxState> store){
+
           return Scaffold(
             appBar: AppBar(
               title: Text("这是第二页"),
@@ -37,8 +37,8 @@ class NextPageState extends State<NextPage> {
                 )
             ),
           );
+
         }
     );
   }
-
 }
