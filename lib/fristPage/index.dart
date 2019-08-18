@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,6 @@ void main() {
       new MyApp()
   );
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,7 +20,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class ScaffoldRoute extends StatefulWidget {
   @override
   _ScaffoldRouteState createState() => _ScaffoldRouteState();
@@ -34,14 +31,21 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( //导航栏
+      //导航栏
+      appBar: AppBar(
         title: Text("App Name"),
         actions: <Widget>[ //导航栏右侧菜单
           IconButton(icon: Icon(Icons.share), onPressed: () {}),
         ],
       ),
-      drawer: new MyDrawer(), //抽屉
-      bottomNavigationBar: BottomNavigationBar( // 底部导航
+      //抽屉
+      drawer: new MyDrawer(),
+      // 主页面
+      body: new Center(
+        child: new Text('text'),
+      ),
+      // 底部导航
+      bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('Business')),
@@ -51,7 +55,8 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> {
         fixedColor: Colors.blue,
         onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton( //悬浮按钮
+      //悬浮按钮
+      floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed:_onAdd
       ),
@@ -60,11 +65,14 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      print(index);
     });
   }
   void _onAdd(){
   }
 }
+
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
     Key key,
