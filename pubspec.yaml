@@ -21,6 +21,8 @@ dependencies:
     sdk: flutter
   amap_location: ^0.2.0
   event_bus: ^1.1.0
+  redux: ^3.0.0
+  flutter_redux: ^0.5.3
   # async_loader: ^0.1.2
   # simple_permissions: ^0.1.9
   # easy_alert: ^0.0.2
