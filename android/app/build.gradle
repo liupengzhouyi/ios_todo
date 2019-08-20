@@ -44,7 +44,16 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                AMAP_KEY : "1cb432f20fc63263c6a49cc0e9761878", /// 高德地图key
+        ]
     }
+
+    dependencies {
+        //这里的插件可自行引入，都是云端的
+        implementation 'com.amap.api:location:latest.integration'
+    }
+
 
     buildTypes {
         release {

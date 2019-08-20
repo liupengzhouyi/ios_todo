@@ -9,7 +9,9 @@ import 'package:ios_todo/gaodeMap/positioning/ListenLocation.dart';
 import 'package:ios_todo/gaodeMap/test/paly.dart';
 
 void main(){
-  AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
+
+  AMapLocationClient.setApiKey("1cb432f20fc63263c6a49cc0e9761878");
+  //AMapLocationClient.setApiKey("5fa948fc7dccd87dd1b0237bad511490");
   runApp(MyApp());
 }
 
@@ -51,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
-      paly04();
+      paly01();
     });
   }
 
