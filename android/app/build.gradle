@@ -54,7 +54,6 @@ android {
         implementation 'com.amap.api:location:latest.integration'
     }
 
-
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

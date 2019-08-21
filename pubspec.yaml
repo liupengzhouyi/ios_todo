@@ -23,6 +23,8 @@ dependencies:
   event_bus: ^1.1.0
   redux: ^3.0.0
   flutter_redux: ^0.5.3
+  # gzx_dropdown_menu : ^1.0.3
+  # dropdown_menu: ^1.1.1
   # async_loader: ^0.1.2
   # simple_permissions: ^0.1.9
   # easy_alert: ^0.0.2
@@ -30,6 +32,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+
+  # 下拉列表
+  gzx_dropdown_menu :
+    git:
+      url: https://github.com/liupengzhouyi/gzx_dropdown_menu.git
 
 dev_dependencies:
   flutter_test:
