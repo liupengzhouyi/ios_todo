@@ -170,3 +170,35 @@ class AreasData {
     list.add('土默特右旗');
   }
 }
+
+class HeadNameData {
+  List<String> list;
+
+  // 成员方法
+  HeadNameData();
+
+  // 在类表中添加数据
+  void addData(String areasData) {
+    list.add(areasData);
+  }
+
+  // 构建新的数据列表
+  void createNewList() {
+    this.list = null;
+    list = new List<String>();
+  }
+
+  List<String> getList() {
+    return this.list;
+  }
+
+  // 初始化
+  void init() {
+    this.list = new List<String>();
+    list.add('城市');
+    list.add('专业');
+    list.add('学历');
+    list.add('薪水');
+    list.add('测试');
+  }
+}

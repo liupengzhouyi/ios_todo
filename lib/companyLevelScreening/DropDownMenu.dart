@@ -67,7 +67,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
   /**
    * 成员变量：
    */
-  List<String> _dropDownHeaderItemStrings = ['城市', '专业', '学历', '薪资', '测试'];
+  List<String> _dropDownHeaderItemStrings;
   /**
    * 成员变量：头部
    */
@@ -76,6 +76,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
    * 成员变量：用来保存每一个选项下面的被选项的数据
    */
   List<List<SortCondition>> initlist =[];
+
   /**
    * 成员变量：专业选项
    */
@@ -116,8 +117,28 @@ class _DropDownMenuState extends State<DropDownMenu> {
     super.initState();
     // 初始化数据
     this.createSelectedData();
+    // 初始化下拉框头部信息
+    this.createSelectedHead();
     // 创建选项的标题
     this.setDropDownHeaders();
+  }
+
+  /**
+   * 功能：初始化的时候使用，创建下拉框头部信息，初始化数据源
+   * 具体做法：给每一个下拉框头部信息
+   * 作者：刘鹏
+   * 日期：2019-08-23
+   * 联系方式：liupeng.@outlook.com
+   * Function: use when initializing, create data source, initialize data source
+   * what to do: give each drop-down box header information
+   * author: liu peng
+   * date: 2019-08-23
+   * contact: liupeng.@outlook.com
+   */
+  void createSelectedHead() {
+    HeadNameData headNameData = new HeadNameData();
+    headNameData.init();
+    this._dropDownHeaderItemStrings = headNameData.getList();
   }
 
   /**
@@ -163,28 +184,16 @@ class _DropDownMenuState extends State<DropDownMenu> {
     this.initlist.add(_brandSortConditions);
     // 设置当前专业
     _selectBrandSortCondition = _brandSortConditions[0];
+
     // 添加第二个数据：学历数据
     this.initlist.add(_distanceSortConditions);
     // 设置当前学历
     _selectDistanceSortCondition = _distanceSortConditions[0];
+
     // 添加第一个数据：薪水数据
     this.initlist.add(_salaryDataSortConditions);
     // 设置当前薪水
     _selectSalarySortCondition = _salaryDataSortConditions[0];
-
-    /*_brandSortConditions.add(SortCondition(name: '全部', isSelected: true));
-    _brandSortConditions.add(SortCondition(name: '万达影城1', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城2', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城3', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城4', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城5', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城6', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城7', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城8', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城9', isSelected: false));*/
-    /*_distanceSortConditions.add(SortCondition(name: '距离近', isSelected: true));
-    _distanceSortConditions.add(SortCondition(name: '价格低', isSelected: false));
-    _distanceSortConditions.add(SortCondition(name: '价格高', isSelected: false));*/
   }
 
   /**
@@ -203,6 +212,23 @@ class _DropDownMenuState extends State<DropDownMenu> {
       dropDownHeaderList.add(GZXDropDownHeaderItem(str));
     }
   }
+
+  /**
+   * 功能：选中下拉选项之后，更新标题数据
+   * 作者：刘鹏
+   * 日期：2019-08-22
+   * 联系方式：liupeng.@outlook.com
+   * Function: after selecting the drop-down option, update the title data
+   * author: liu peng
+   * date: 2019-08-22
+   * contact: liupeng.@outlook.com
+   */
+  void setDropDownHeaderItemStrings(int index, String name) {
+    setState(() {
+      this._dropDownHeaderItemStrings[index] = name;
+    });
+  }
+
 
 
   @override
@@ -228,12 +254,22 @@ class _DropDownMenuState extends State<DropDownMenu> {
       body: Stack(
         key: _stackKey,
         children: <Widget>[
+          // 下拉菜单头部
           Column(
             children: <Widget>[
               // 下拉菜单头部
               GZXDropDownHeader(
                 // 下拉的头部项，目前每一项，只能自定义显示的文字、图标、图标大小修改
-                items: dropDownHeaderList,
+                // 如果使用下面这个语句，就不会根据哟哦农户的选中变化选项头部的信息
+                // items: dropDownHeaderList.toList(),
+                items: [
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[0]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[1]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[2]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[3]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[4]),
+                  // GZXDropDownHeaderItem(_dropDownHeaderItemStrings[3], iconData: Icons.filter_frames, iconSize: 18),
+                ],
                 // GZXDropDownHeader对应第一父级Stack的key
                 stackKey: _stackKey,
                 // controller用于控制menu的显示或隐藏
@@ -255,7 +291,8 @@ class _DropDownMenuState extends State<DropDownMenu> {
               GZXDropdownMenuBuilder(
                   dropDownHeight: 40 * 8.0,
                   dropDownWidget: _buildAddressWidget((selectValue) {
-                    _dropDownHeaderItemStrings[0] = selectValue;
+                    // 设置更新后的标题数据
+                    setDropDownHeaderItemStrings(0, selectValue);
                     _dropdownMenuController.hide();
                     setState(() {
                       print('测试第一个连级多选');
@@ -266,7 +303,8 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   // dropDownWidget: _buildConditionListWidget(_brandSortConditions, (value) {
                   dropDownWidget: _buildConditionListWidget(initlist[0], (value) {
                     _selectBrandSortCondition = value;
-                    _dropDownHeaderItemStrings[1] = _selectBrandSortCondition.name == '全部' ? '品牌' : _selectBrandSortCondition.name;
+                    // 设置更新后的标题数据
+                    setDropDownHeaderItemStrings(1, _selectBrandSortCondition.name);
                     _dropdownMenuController.hide();
                     setState(() {
                       print('${_selectBrandSortCondition.name}');
@@ -276,8 +314,9 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   dropDownHeight: 40.0 * _distanceSortConditions.length,
                   //dropDownWidget: _buildConditionListWidget(_distanceSortConditions, (value) {
                   dropDownWidget: _buildConditionListWidget(initlist[1], (value) {
-                    _selectDistanceSortCondition = value;
-                    _dropDownHeaderItemStrings[2] = _selectDistanceSortCondition.name;
+                    _selectSalarySortCondition  = value;
+                    // 设置更新后的标题数据
+                    setDropDownHeaderItemStrings(2, _selectSalarySortCondition.name);
                     _dropdownMenuController.hide();
                     setState(() {
                       print('${_selectDistanceSortCondition.name}');
@@ -285,10 +324,10 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   })),
               GZXDropdownMenuBuilder(
                   dropDownHeight: 40.0 * _distanceSortConditions.length,
-                  // dropDownWidget: _buildConditionListWidget(_salaryDataSortConditions, (value) {
                   dropDownWidget: _buildConditionListWidget(initlist[2], (value) {
                     _selectDistanceSortCondition = value;
-                    _dropDownHeaderItemStrings[2] = _selectDistanceSortCondition.name;
+                    // 设置更新后的标题数据
+                    setDropDownHeaderItemStrings(3, _selectDistanceSortCondition.name);
                     _dropdownMenuController.hide();
                     setState(() {
                       print('${_selectDistanceSortCondition.name}');
@@ -297,11 +336,10 @@ class _DropDownMenuState extends State<DropDownMenu> {
               GZXDropdownMenuBuilder(
                   dropDownHeight: 40 * 8.0,
                   dropDownWidget: _buildAddressWidget((selectValue) {
-                    _dropDownHeaderItemStrings[0] = selectValue;
+                    // 设置更新后的标题数据
+                    setDropDownHeaderItemStrings(4, selectValue);
                     _dropdownMenuController.hide();
-                    setState(() {
-
-                    });
+                    setState(() {});
                   })),
             ],
           ),
@@ -323,6 +361,8 @@ class _DropDownMenuState extends State<DropDownMenu> {
    */
   int _selectSecondLevelIndex = -1;
 
+
+
   /**
    * 连级选择框
    */
@@ -330,35 +370,16 @@ class _DropDownMenuState extends State<DropDownMenu> {
     /**
      * 成员变量：第一级选项
      */
-    List firstLevels = new List<String>.generate(15, (int index) {
-      if (index == 0) {
-        return '全部';
-      }
-      return '$index区';
-      //return '${cityData.getList()}';
-    });
-
     CityData cityData = new CityData();
     cityData.init();
-    firstLevels = cityData.getList();
+    List firstLevels = cityData.getList();
 
     /**
      * 成员变量：第二级选项
      */
-    List secondLevels = new List<String>.generate(15, (int index) {
-      if (index == 0) {
-        return '全部';
-      }
-      return '$_selectTempFirstLevelIndex$index街道办';
-    });
-
-    for(String str in secondLevels) {
-      print('123:' + str);
-    }
-
     AreasData areasData = new AreasData();
     areasData.init();
-    secondLevels = areasData.getList();
+    List secondLevels = areasData.getList();
 
     return Row(
       children: <Widget>[
@@ -372,7 +393,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                 onTap: () {
                   _selectTempFirstLevelIndex = index;
                   if (_selectTempFirstLevelIndex == 0) {
-                    itemOnTap('全城');
+                    itemOnTap('${_selectTempFirstLevelIndex}');
                     return;
                   }
                   setState(() {
@@ -383,9 +404,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                 child: Container(
                     height: 40,
                     // 设置背景颜色
-                    color: _selectTempFirstLevelIndex == index
-                        ? Colors.yellow
-                        : Colors.white,
+                    color: _selectTempFirstLevelIndex == index ? Colors.yellow : Colors.white,
                     // 字体要居中
                     alignment: Alignment.center,
                     // 设置字体颜色
@@ -482,9 +501,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   ),
                 ),
                 // 设置选中之后的标志
-                goodsSortCondition.isSelected
-                    ? Icon(Icons.check, color: Theme.of(context).primaryColor, size: 16,)
-                    : SizedBox(),
+                goodsSortCondition.isSelected ? Icon(Icons.check, color: Theme.of(context).primaryColor, size: 16,) : SizedBox(),
                 // 设置对齐的距离，（左右对齐）
                 SizedBox(width: 16,),
               ],

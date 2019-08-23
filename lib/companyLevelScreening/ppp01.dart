@@ -162,7 +162,7 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                   dropDownHeight: 40.0 * _distanceSortConditions.length,
                   dropDownWidget: _buildConditionListWidget(_distanceSortConditions, (value) {
                     _selectDistanceSortCondition = value;
-                    _dropDownHeaderItemStrings[2] = _selectDistanceSortCondition.name;
+                    _dropDownHeaderItemStrings[3] = _selectDistanceSortCondition.name;
                     _dropdownMenuController.hide();
                     setState(() {
                       print('${_selectDistanceSortCondition.name}');
