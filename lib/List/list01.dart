@@ -20,9 +20,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyList extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
